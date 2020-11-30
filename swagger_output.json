@@ -1,0 +1,18 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Cadeira Livre Cliente API",
+    "description": "API REST do aplicativo SaloonB - Clientes"
+  },
+  "host": "localhost:8096",
+  "basePath": "/",
+  "tags": [],
+  "schemes": [
+    "http"
+  ],
+  "securityDefinitions": {},
+  "consumes": [],
+  "produces": [],
+  "paths": {},
+  "definitions": {}
+}
