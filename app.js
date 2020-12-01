@@ -2,12 +2,12 @@ import express from "express";
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import swaggerFile from "./swagger_output.json";
-import amqp from "amqplib/callback_api";
 import cookieParser from "cookie-parser";
 
 import * as mongodb from "./src/config/mongodb/mongoConfig";
 import * as fila from "./src/config/rabbitmq/filas";
 import * as sender from "./src/config/rabbitmq/rabbitMqSender";
+import usuarios from "./src/modulos/auth/routes/usuarioRoutes";
 
 const app = express();
 const token =
@@ -22,6 +22,8 @@ sender.criarFila(fila.AUTENTICAR_USUARIO);
 sender.criarFila(fila.DESLOGAR_USUARIO);
 
 app.use("/swagger-ui", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+
+app.use(usuarios);
 
 app.get("/login", (req, res) => {
   res.sendFile(__dirname + "/views/login.html");
