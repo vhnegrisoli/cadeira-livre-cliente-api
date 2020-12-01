@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "startLocal": "set NODE_ENV=development&& node swagger.js&& nodemon app.js",
-    "start": "set NODE_ENV=production&& node swagger.js&& sucrase-node app.js"
+    "start": "set NODE_ENV=production&& node swagger.js&& sucrase-node app.js",
+    "heroku-prebuild": "rm -rf node_modules && rm -rf yarn.lock && yarn"
   },
   "dependencies": {
     "amqplib": "^0.6.0",
