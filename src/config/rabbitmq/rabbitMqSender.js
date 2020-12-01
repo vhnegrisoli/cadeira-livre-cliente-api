@@ -4,6 +4,7 @@ import * as config from "../secrets";
 
 const EXCHANGE_TYPE = "topic";
 const TOPIC_NAME = "biot-admin.topic";
+const MEIO_SEGUNDO = 500;
 
 export function criarFila(fila) {
   amqp.connect(config.RABBIT_MQ_CONNECTION, (error, connection) => {
@@ -24,7 +25,7 @@ export function criarFila(fila) {
     });
     setTimeout(function () {
       connection.close();
-    }, 500);
+    }, MEIO_SEGUNDO);
   });
 }
 
@@ -43,6 +44,6 @@ export function enviarParaFila(dadosJson, fila) {
     });
     setTimeout(function () {
       connection.close();
-    }, 500);
+    }, MEIO_SEGUNDO);
   });
 }
