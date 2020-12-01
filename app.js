@@ -7,7 +7,8 @@ import cookieParser from "cookie-parser";
 import * as mongodb from "./src/config/mongodb/mongoConfig";
 import * as fila from "./src/config/rabbitmq/filas";
 import * as sender from "./src/config/rabbitmq/rabbitMqSender";
-import usuarios from "./src/modulos/auth/routes/usuarioRoutes";
+import usuario from "./src/modulos/usuario/routes/usuarioRoutes";
+import autenticacao from "./src/modulos/usuario/routes/usuarioRoutes";
 
 const app = express();
 const token =
@@ -23,7 +24,8 @@ sender.criarFila(fila.DESLOGAR_USUARIO);
 
 app.use("/swagger-ui", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
-app.use(usuarios);
+app.use(usuario);
+app.use(autenticacao);
 
 app.get("/login", (req, res) => {
   res.sendFile(__dirname + "/views/login.html");

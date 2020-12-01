@@ -10,6 +10,11 @@ class UsuarioRepository {
     let usuario = await Usuario.findById(id);
     return usuario;
   }
+
+  async findByEmail(email) {
+    let usuario = await Usuario.findOne({ email });
+    return usuario;
+  }
 }
 
 export default new UsuarioRepository();

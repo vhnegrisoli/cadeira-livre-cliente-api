@@ -1,7 +1,7 @@
 const env = process.env;
 export const MONGO_DB_CONNECTION =
   env.NODE_ENV == "development"
-    ? "mongodb://localhost:27017/cadeira-livre-cliente"
+    ? "mongodb://localhost:27017/dashboard_realtime"
     : env.MONGO_DB_CONNECTION;
 export const RABBIT_MQ_CONNECTION =
   env.NODE_ENV == "development"

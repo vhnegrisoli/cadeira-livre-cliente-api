@@ -29,8 +29,7 @@ export function criarFila(fila) {
   });
 }
 
-export function enviarParaFila(dadosJson, fila) {
-  let dados = JSON.stringify(dadosJson);
+export function enviarParaFila(dados, fila) {
   amqp.connect(config.RABBIT_MQ_CONNECTION, (error, connection) => {
     if (error) {
       throw error;
@@ -39,7 +38,7 @@ export function enviarParaFila(dadosJson, fila) {
       if (error) {
         throw error;
       }
-      channel.sendToQueue(fila, Buffer.from(dados));
+      channel.sendToQueue(fila, Buffer.from(String(dados)));
       console.log(`A mensagem: '${dados}' enviada com sucesso!`);
     });
     setTimeout(function () {

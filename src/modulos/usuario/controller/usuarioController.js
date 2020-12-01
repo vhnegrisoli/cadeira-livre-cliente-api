@@ -3,7 +3,7 @@ import UsuarioService from "../service/usuarioService";
 class UsuarioController {
   async buscarTodos(req, res) {
     let usuarios = await UsuarioService.buscarTodos();
-    return res.json(usuarios);
+    return res.status(usuarios.status).json(usuarios);
   }
 }
 
