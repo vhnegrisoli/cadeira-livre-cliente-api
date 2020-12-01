@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Authenticated Example</title>
+  </head>
+  <body>
+    <button id="button" type="submit" onclick="logout()">Logout</button>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    document
+      .getElementById("button")
+      .addEventListener("click", function (event) {
+        event.preventDefault();
+      });
+    async function logout() {
+      var token = localStorage.getItem("token");
+      axios.post(`api/auth/logout?access_token=${token}`).then((data) => {
+        localStorage.removeItem("token");
+        document.cookie =
+          "token=; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
+        window.location.href = "/login";
+      });
+    }
+  </script>
+</html>
