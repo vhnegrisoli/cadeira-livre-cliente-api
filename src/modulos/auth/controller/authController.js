@@ -1,8 +1,8 @@
 import AuthService from "../service/authService";
 
 class AuthController {
-  async autenticar(req, res) {
-    let auth = await AuthService.autenticar(req);
+  async autenticarUsuario(req, res) {
+    let auth = await AuthService.autenticarUsuario(req);
     return res.status(auth.status).json(auth);
   }
 }
