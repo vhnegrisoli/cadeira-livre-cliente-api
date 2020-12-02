@@ -14,6 +14,7 @@ O projeto é subdividido em módulos, utiliza arquitetura de API REST e microsse
 - **REST API**
 - **JWT**
 - **MongoDB**
+- **RabbitMQ**
 - **Mongoose**
 - **Arquitetura Multicamadas**
 - **Docker**
