@@ -118,11 +118,7 @@ https://cadeira-livre-cliente-api.herokuapp.com/swagger-ui
 
 ### Endpoints
 
-![Documentação do Swagger - Endpoints]()
-
-### Especificação dos requests e responses
-
-![Documentação do Swagger - Requests e Responses]()
+![Documentação do Swagger - Endpoints](https://github.com/vhnegrisoli/cadeira-livre-cliente-api/blob/main/imagens/Documenta%C3%A7%C3%A3o%20Swagger.png)
 
 ## Autores
 
