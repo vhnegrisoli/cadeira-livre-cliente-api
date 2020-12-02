@@ -63,13 +63,13 @@ Para acompanhar os logs de qualquer container, basta executar:
 
 `docker logs --follow NOME_DO_CONTAINER`
 
-#### Para rodar localmente via Year
+#### Para rodar localmente via Yarn
 
 É necessário ter as seguintes ferramentas para inicializar o projeto:
 
 ```
 Node
-Yearn
+Yarn
 Instância local do MongoDB
 Instância local do RabbitMQ
 ```
