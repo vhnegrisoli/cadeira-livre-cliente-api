@@ -13,23 +13,6 @@
   "securityDefinitions": {},
   "consumes": [],
   "produces": [],
-  "paths": {
-    "/login": {
-      "get": {
-        "tags": [],
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      }
-    },
-    "/authenticated": {
-      "get": {
-        "tags": [],
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      }
-    }
-  },
+  "paths": {},
   "definitions": {}
 }

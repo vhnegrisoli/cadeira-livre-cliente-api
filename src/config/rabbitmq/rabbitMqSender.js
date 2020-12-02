@@ -1,12 +1,20 @@
 import amqp from "amqplib/callback_api";
 
 import * as config from "../secrets";
+import * as fila from "../rabbitmq/filas";
 
 const EXCHANGE_TYPE = "topic";
 const TOPIC_NAME = "biot-admin.topic";
 const MEIO_SEGUNDO = 500;
+const filas = [fila.AUTENTICAR_USUARIO, fila.DESLOGAR_USUARIO];
 
-export function criarFila(fila) {
+export function criarFilas() {
+  filas.forEach((fila) => {
+    criarFila(fila);
+  });
+}
+
+function criarFila(fila) {
   amqp.connect(config.RABBIT_MQ_CONNECTION, (error, connection) => {
     if (error) {
       throw error;

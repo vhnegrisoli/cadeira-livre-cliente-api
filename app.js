@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser";
 
 import * as mongodb from "./src/config/mongodb/mongoConfig";
 import * as fila from "./src/config/rabbitmq/filas";
-import * as sender from "./src/config/rabbitmq/rabbitMqSender";
+import * as rabbitMq from "./src/config/rabbitmq/rabbitMqSender";
 import usuario from "./src/modulos/usuario/routes/usuarioRoutes";
 import autenticacao from "./src/modulos/auth/routes/authRoutes";
 import checkToken from "./src/config/auth/checkToken";
@@ -19,25 +19,13 @@ app.use(cors());
 app.use(cookieParser());
 
 mongodb.connect();
-sender.criarFila(fila.AUTENTICAR_USUARIO);
-sender.criarFila(fila.DESLOGAR_USUARIO);
+rabbitMq.criarFilas();
 
 app.use("/swagger-ui", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.use(autenticacao);
 app.use(checkToken);
 app.use(usuario);
-
-app.get("/login", (req, res) => {
-  res.sendFile(__dirname + "/views/login.html");
-});
-
-app.get("/authenticated", (req, res) => {
-  if (!req.cookies.token) {
-    res.redirect("/login");
-  }
-  res.sendFile(__dirname + "/views/authenticated.html");
-});
 
 app.listen(PORT, () => {
   console.log(`Aplicação iniciada na porta ${PORT}`);
