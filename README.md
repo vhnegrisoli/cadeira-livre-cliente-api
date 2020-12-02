@@ -114,7 +114,9 @@ O deploy da aplicação está sendo realizado no Heroku
 
 A API estará sendo documentada com Swagger e poderá ser consultada no endereço:
 
-https://cadeira-livre-cliente-api.herokuapp.com/swagger-ui
+http://localhost:8096/swagger-ui (local)
+
+https://cadeira-livre-cliente-api.herokuapp.com/swagger-ui (produção)
 
 ### Endpoints
 
