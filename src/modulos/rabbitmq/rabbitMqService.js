@@ -4,7 +4,6 @@ import * as httpStatus from "../../config/constantes";
 class RabbitMqService {
   enviarMensagemParaFila(mensagem, fila) {
     let mensagemString = JSON.stringify(mensagem);
-    console.log(mensagemString);
     try {
       sender.enviarParaFila(mensagemString, fila);
     } catch (error) {

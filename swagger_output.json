@@ -29,22 +29,6 @@
         "parameters": [],
         "responses": {}
       }
-    },
-    "/api/auth/token": {
-      "post": {
-        "tags": [],
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      }
-    },
-    "/api/auth/logout": {
-      "post": {
-        "tags": [],
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      }
     }
   },
   "definitions": {}

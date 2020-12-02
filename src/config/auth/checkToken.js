@@ -22,7 +22,8 @@ export default async (req, res, next) => {
       token,
       config.APPLICATION_SECRET
     );
-    req.usuarioAutenticado = dadosToken.usuarioAutenticado;
+    const { id, nome, email, cpf } = dadosToken;
+    req.usuarioAutenticado = { id, nome, email, cpf };
     return next();
   } catch (error) {
     return res
