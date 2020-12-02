@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { promisify } from "util";
 
 import UsuarioRepository from "../../usuario/repository/usuarioRepository";
 import RabbitMqService from "../../rabbitmq/rabbitMqService";
@@ -53,6 +54,53 @@ class AuthService {
     return {
       status: httpStatus.UNAUTHORIZED,
       message: "A senha está incorreta.",
+    };
+  }
+
+  recuperarUsuarioAutenticado(req) {
+    const { usuarioAutenticado } = req;
+    if (!usuarioAutenticado) {
+      return {
+        status: httpStatus.FORBIDDEN,
+        message: "Usuário não autenticado.",
+      };
+    }
+    return { status: httpStatus.OK, usuarioAutenticado };
+  }
+
+  async verificarTokenValido(req) {
+    const { token } = req.query;
+    if (!token) {
+      return {
+        status: httpStatus.BAD_REQUEST,
+        message: "É necessário informar um token no formato JWT.",
+      };
+    }
+    console.log(token);
+    let tokenValida = await promisify(jwt.verify)(
+      token,
+      config.APPLICATION_SECRET
+    );
+    return {
+      status: httpStatus.OK,
+      valida: Date.now() < tokenValida.exp * 1000,
+    };
+  }
+
+  deslogarUsuario(req) {
+    let { authorization } = req.headers;
+    let { usuarioAutenticado } = req;
+    authorization.replace("Bearer ", "");
+    RabbitMqService.enviarMensagemParaFila(
+      {
+        usuarioId: usuarioAutenticado.id,
+        token: authorization,
+      },
+      fila.DESLOGAR_USUARIO
+    );
+    return {
+      status: httpStatus.OK,
+      message: `O usuário ${usuarioAutenticado.nome} foi deslogado com sucesso!`,
     };
   }
 }
