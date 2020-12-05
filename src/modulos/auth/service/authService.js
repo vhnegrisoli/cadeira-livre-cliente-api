@@ -61,12 +61,12 @@ class AuthService {
     const { usuarioAutenticado } = req;
     if (!usuarioAutenticado) {
       return {
-        status: httpStatus.FORBIDDEN,
-        message: "Usuário não autenticado.",
-      };
+          status: httpStatus.FORBIDDEN,
+          message: "Usuário não autenticado.",
+        };
+      }
+      return { status: httpStatus.OK, usuarioAutenticado };
     }
-    return { status: httpStatus.OK, usuarioAutenticado };
-  }
 
   async verificarTokenValido(req) {
     const { token } = req.query;

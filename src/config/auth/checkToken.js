@@ -21,7 +21,7 @@ export default async (req, res, next) => {
   }
   let token = recuperarTokenDoHeader(authorization);
   try {
-    await setarUsuarioDoTokenNoRequest(token);
+    await setarUsuarioDoTokenNoRequest(req, token);
     return next();
   } catch (error) {
     return res
@@ -36,7 +36,7 @@ export default async (req, res, next) => {
     return authorization;
   }
 
-  async function setarUsuarioDoTokenNoRequest(token) {
+  async function setarUsuarioDoTokenNoRequest(req, token) {
     const dadosToken = await promisify(jwt.verify)(
       token,
       config.APPLICATION_SECRET

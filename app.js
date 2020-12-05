@@ -17,6 +17,7 @@ const PORT = env.PORT || 8096;
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
+app.use(checkToken);
 
 mongodb.connect();
 rabbitMq.inicializarRabbitMQ();
@@ -24,7 +25,6 @@ rabbitMq.inicializarRabbitMQ();
 app.use("/swagger-ui", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.use(autenticacao);
-app.use(checkToken);
 app.use(usuario);
 
 app.listen(PORT, () => {
