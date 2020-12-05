@@ -6,9 +6,23 @@ import * as fila from "../rabbitmq/filas";
 const EXCHANGE_TYPE = "topic";
 const TOPIC_NAME = "biot-admin.topic";
 const MEIO_SEGUNDO = 500;
+const VINTE_SEGUNDOS = 20000;
 const filas = [fila.AUTENTICAR_USUARIO, fila.DESLOGAR_USUARIO];
+const env = process.env.NODE_ENV;
 
-export function criarFilas() {
+export async function inicializarRabbitMQ() {
+  if (env !== "container") {
+    criarFilas();
+  } else {
+    console.log("Inicializando o serviço do RabbitMQ");
+    setTimeout(function aguardarInicializacaoRabbitMq() {
+      criarFilas();
+      console.log("Serviço inicializado! :)");
+    }, VINTE_SEGUNDOS);
+  }
+}
+
+function criarFilas() {
   filas.forEach((fila) => {
     criarFila(fila);
   });

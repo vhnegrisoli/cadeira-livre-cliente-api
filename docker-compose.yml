@@ -1,6 +1,5 @@
 version: "3.0"
 services:
-
   cadeira-livre-cliente-api-db:
     image: mongo
     container_name: cadeira-livre-cliente-api-db
@@ -8,18 +7,18 @@ services:
       - cadeira-livre-network
     restart: always
     environment:
-      MONGODB_PASS: "no"  
+      MONGODB_PASS: "no"
     ports:
-      - '27017:27017'  
-      - '28017:28017'
+      - "27017:27017"
+      - "28017:28017"
 
   cadeira-livre-cliente-api:
-    build: './'
+    build: "./"
     container_name: cadeira-livre-cliente-api
     networks:
       - cadeira-livre-network
     ports:
-      - '8096:8096'
+      - "8096:8096"
     depends_on:
       - cadeira-livre-cliente-api-db
       - cadeira-livre-rabbit
@@ -27,6 +26,7 @@ services:
       - MONGO_DB_CONNECTION=mongodb://cadeira-livre-cliente-api-db:27017/cadeira-livre-cliente
       - RABBIT_MQ_CONNECTION=amqp://admin:admin@cadeira-livre-rabbit:5672/cadeira_livre_rabbit_host
       - APPLICATION_SECRET=Y2FkZWlyYS1saXZyZS11c3VhcmlvLWFwaS1kb2NrZXI=
+      - NODE_ENV=container
 
   cadeira-livre-rabbit:
     image: rabbitmq:3-management
@@ -35,9 +35,9 @@ services:
     networks:
       - cadeira-livre-network
     ports:
-      - '5672:5672'
-      - '25676:25676'
-      - '15672:15672'
+      - "5672:5672"
+      - "25676:25676"
+      - "15672:15672"
     environment:
       - RABBITMQ_DEFAULT_USER=admin
       - RABBITMQ_DEFAULT_PASS=admin
