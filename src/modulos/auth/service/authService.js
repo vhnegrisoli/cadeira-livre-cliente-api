@@ -76,15 +76,18 @@ class AuthService {
         message: "É necessário informar um token no formato JWT.",
       };
     }
-    console.log(token);
-    let tokenValida = await promisify(jwt.verify)(
-      token,
-      config.APPLICATION_SECRET
-    );
-    return {
-      status: httpStatus.OK,
-      valida: Date.now() < tokenValida.exp * 1000,
-    };
+    try {
+      let tokenValida = await promisify(jwt.verify)(
+        token,
+        config.APPLICATION_SECRET
+      );
+      return {
+        status: httpStatus.OK,
+        valida: Date.now() < tokenValida.exp * 1000,
+      };
+    } catch (error) {
+      return { status: httpStatus.UNAUTHORIZED, valida: false };
+    }
   }
 
   deslogarUsuario(req) {

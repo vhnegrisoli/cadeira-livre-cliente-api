@@ -9,6 +9,7 @@ const UsuarioSchema = new Schema({
   email: String,
   cpf: String,
   senha: String,
+  telefone: String,
 });
 
 UsuarioSchema.pre("save", async function (next) {

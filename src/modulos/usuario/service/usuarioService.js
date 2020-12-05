@@ -2,6 +2,10 @@ import UsuarioRepository from "../repository/usuarioRepository";
 import * as httpStatus from "../../../config/constantes";
 
 class UsuarioService {
+  async salvarUsuario(req) {
+    
+  }
+
   async buscarTodos() {
     let usuarios = await UsuarioRepository.findAll();
     if (usuarios.length < 1) {
