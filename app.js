@@ -8,6 +8,7 @@ import * as mongodb from "./src/config/mongodb/mongoConfig";
 import * as rabbitMq from "./src/config/rabbitmq/rabbitMqSender";
 import usuario from "./src/modulos/usuario/routes/usuarioRoutes";
 import autenticacao from "./src/modulos/auth/routes/authRoutes";
+import cadeirasLivres from "./src/modulos/cadeira-livre/router";
 import checkToken from "./src/config/auth/checkToken";
 
 const env = process.env;
@@ -26,6 +27,7 @@ app.use("/swagger-ui", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.use(autenticacao);
 app.use(usuario);
+app.use(cadeirasLivres);
 
 app.listen(PORT, () => {
   console.log(

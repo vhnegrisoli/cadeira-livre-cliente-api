@@ -11,3 +11,8 @@ export const APPLICATION_SECRET =
   env.NODE_ENV == "development"
     ? "Y2FkZWlyYS1saXZyZS11c3VhcmlvLWFwaS1kZXNlbnZvbHZpbWVudG8="
     : env.APPLICATION_SECRET;
+
+export const CADEIRA_LIVRE_ADMIN_BASE_URI =
+  env.NODE_ENV == "development"
+    ? "http://localhost:8095"
+    : env.CADEIRA_LIVRE_ADMIN_BASE_URI;

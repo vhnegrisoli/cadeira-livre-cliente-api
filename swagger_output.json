@@ -46,15 +46,13 @@
         "responses": {}
       }
     },
-    "/api/usuarios/novo": {
+    "/api/usuarios": {
       "post": {
         "tags": [],
         "description": "",
         "parameters": [],
         "responses": {}
-      }
-    },
-    "/api/usuarios": {
+      },
       "get": {
         "tags": [],
         "description": "",

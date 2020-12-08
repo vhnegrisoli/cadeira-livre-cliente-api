@@ -1,6 +1,7 @@
 import amqp from "amqplib/callback_api";
 
 import * as config from "../secrets";
+import * as endpoints from "../endpoints";
 import * as fila from "../rabbitmq/filas";
 
 const EXCHANGE_TYPE = "topic";

@@ -15,6 +15,16 @@ class UsuarioRepository {
     let usuario = await Usuario.findOne({ email });
     return usuario;
   }
+
+  async findByCpf(cpf) {
+    let usuario = await Usuario.findOne({ cpf });
+    return usuario;
+  }
+
+  async save(usuario) {
+    let usuarioCriado = await Usuario.create(usuario);
+    return usuarioCriado;
+  }
 }
 
 export default new UsuarioRepository();

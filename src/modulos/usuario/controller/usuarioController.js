@@ -6,9 +6,19 @@ class UsuarioController {
     return res.status(usuario.status).json(usuario);
   }
 
+  async editarUsuario(req, res) {
+    let usuario = await UsuarioService.editarUsuario(req);
+    return res.status(usuario.status).json(usuario);
+  }
+
   async buscarTodos(req, res) {
     let usuarios = await UsuarioService.buscarTodos();
     return res.status(usuarios.status).json(usuarios);
+  }
+
+  async buscarPorId(req, res) {
+    let usuario = await UsuarioService.buscarPorId(req);
+    return res.status(usuario.status).json(usuario);
   }
 }
 
