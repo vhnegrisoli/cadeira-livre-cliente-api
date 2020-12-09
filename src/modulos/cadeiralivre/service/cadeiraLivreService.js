@@ -60,9 +60,13 @@ class CadeiraLivreService {
         token,
         cadeiraLivreId
       );
+      this.validarPermissaoParaVisualizarCadeiraLivre(
+        cadeiraLivre.dados,
+        req.usuarioAutenticado
+      );
       return {
         status: cadeiraLivre.status,
-        cadeirasLivres: cadeiraLivre.dados
+        cadeiraLivre: cadeiraLivre.dados
           ? cadeiraLivre.dados
           : cadeiraLivre.message,
       };
@@ -86,7 +90,7 @@ class CadeiraLivreService {
       );
       return {
         status: cadeiraLivre.status,
-        cadeirasLivres: cadeiraLivre.dados
+        cadeiraLivre: cadeiraLivre.dados
           ? cadeiraLivre.dados
           : cadeiraLivre.message,
       };
@@ -116,6 +120,19 @@ class CadeiraLivreService {
       );
     }
     return token;
+  }
+
+  validarPermissaoParaVisualizarCadeiraLivre(cadeiraLivre, usuarioAutenticado) {
+    if (
+      cadeiraLivre &&
+      cadeiraLivre.cliente.id &&
+      cadeiraLivre.cliente.id !== usuarioAutenticado.id
+    ) {
+      throw new CadeiraLivreException(
+        httpStatus.FORBIDDEN,
+        "Você não possui permissão para "
+      );
+    }
   }
 }
 

@@ -44,7 +44,7 @@ class CadeiraLivreClient {
     await axios
       .get(endpoint)
       .then((res) => {
-        dados = res.data;
+        dados = { status: httpStatus.OK, dados: res.data };
       })
       .catch((error) => {
         dados = {
@@ -68,7 +68,7 @@ class CadeiraLivreClient {
     await axios
       .get(endpoint)
       .then((res) => {
-        dados = res.data;
+        dados = { status: httpStatus.OK, dados: res.data };
       })
       .catch((error) => {
         dados = {
@@ -92,7 +92,7 @@ class CadeiraLivreClient {
     await axios
       .post(endpoint)
       .then((res) => {
-        dados = res.data;
+        dados = { status: httpStatus.OK, dados: res.data };
       })
       .catch((error) => {
         dados = {
