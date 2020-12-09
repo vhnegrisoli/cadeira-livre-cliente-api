@@ -8,7 +8,7 @@ import * as mongodb from "./src/config/mongodb/mongoConfig";
 import * as rabbitMq from "./src/config/rabbitmq/rabbitMqSender";
 import usuario from "./src/modulos/usuario/routes/usuarioRoutes";
 import autenticacao from "./src/modulos/auth/routes/authRoutes";
-import cadeiraLivre from "./src/modulos/cadeira-livre/routes/router";
+import cadeiraLivre from "./src/modulos/cadeiralivre/routes/cadeiraLivreRoutes";
 import checkToken from "./src/config/auth/checkToken";
 
 const env = process.env;
