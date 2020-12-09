@@ -1,4 +1,5 @@
 import * as endpoints from "../../../config/endpoints";
+import * as httpStatus from "../../../config/constantes";
 
 import axios from "axios";
 
@@ -19,10 +20,15 @@ class CadeiraLivreClient {
     await axios
       .get(endpoint)
       .then((res) => {
-        dados = res.data;
+        dados = { status: httpStatus.OK, dados: res.data };
       })
       .catch((error) => {
-        dados = error.response.data.message;
+        dados = {
+          status: error.response.status,
+          message: error.response.data.message
+            ? error.response.data.message
+            : error.message,
+        };
       });
     return dados;
   }
@@ -41,7 +47,12 @@ class CadeiraLivreClient {
         dados = res.data;
       })
       .catch((error) => {
-        dados = error.response.data.message;
+        dados = {
+          status: error.response.status,
+          message: error.response.data.message
+            ? error.response.data.message
+            : error.message,
+        };
       });
     return dados;
   }
@@ -60,7 +71,12 @@ class CadeiraLivreClient {
         dados = res.data;
       })
       .catch((error) => {
-        dados = error.response.data.message;
+        dados = {
+          status: error.response.status,
+          message: error.response.data.message
+            ? error.response.data.message
+            : error.message,
+        };
       });
     return dados;
   }
@@ -79,7 +95,12 @@ class CadeiraLivreClient {
         dados = res.data;
       })
       .catch((error) => {
-        dados = error.response.data.message;
+        dados = {
+          status: error.response.status,
+          message: error.response.data.message
+            ? error.response.data.message
+            : error.message,
+        };
       });
     return dados;
   }

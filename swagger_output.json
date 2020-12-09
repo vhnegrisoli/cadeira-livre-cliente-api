@@ -46,14 +46,8 @@
         "responses": {}
       }
     },
-    "/api/usuarios": {
+    "/api/usuarios/novo": {
       "post": {
-        "tags": [],
-        "description": "",
-        "parameters": [],
-        "responses": {}
-      },
-      "get": {
         "tags": [],
         "description": "",
         "parameters": [],
@@ -83,6 +77,14 @@
             "required": true
           }
         ],
+        "responses": {}
+      }
+    },
+    "/api/usuarios": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [],
         "responses": {}
       }
     },

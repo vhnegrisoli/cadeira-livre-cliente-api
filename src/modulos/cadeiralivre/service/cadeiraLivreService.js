@@ -15,7 +15,12 @@ class CadeiraLivreService {
         token,
         empresaId
       );
-      return { status: httpStatus.OK, cadeirasLivres };
+      return {
+        status: cadeirasLivres.status,
+        cadeirasLivres: cadeirasLivres.dados
+          ? cadeirasLivres.dados
+          : cadeirasLivres.message,
+      };
     } catch (error) {
       return {
         status: error.status ? error.status : httpStatus.INTERNAL_SERVER_ERROR,
@@ -31,7 +36,12 @@ class CadeiraLivreService {
       let cadeirasLivres = await CadeiraLivreClient.buscarCadeirasLivresDoCliente(
         token
       );
-      return { status: httpStatus.OK, cadeirasLivres };
+      return {
+        status: cadeirasLivres.status,
+        cadeirasLivres: cadeirasLivres.dados
+          ? cadeirasLivres.dados
+          : cadeirasLivres.message,
+      };
     } catch (error) {
       return {
         status: error.status ? error.status : httpStatus.INTERNAL_SERVER_ERROR,
@@ -46,11 +56,16 @@ class CadeiraLivreService {
       const { cadeiraLivreId } = req.params;
       this.validarCadeiraLivreIdExistente(cadeiraLivreId);
       let token = this.tratarTokenDoRequest(authorization);
-      let cadeirasLivres = await CadeiraLivreClient.buscarCadeiraLivrePorId(
+      let cadeiraLivre = await CadeiraLivreClient.buscarCadeiraLivrePorId(
         token,
         cadeiraLivreId
       );
-      return { status: httpStatus.OK, cadeirasLivres };
+      return {
+        status: cadeiraLivre.status,
+        cadeirasLivres: cadeiraLivre.dados
+          ? cadeiraLivre.dados
+          : cadeiraLivre.message,
+      };
     } catch (error) {
       return {
         status: error.status ? error.status : httpStatus.INTERNAL_SERVER_ERROR,
@@ -65,11 +80,16 @@ class CadeiraLivreService {
       const { cadeiraLivreId } = req.params;
       this.validarCadeiraLivreIdExistente(cadeiraLivreId);
       let token = this.tratarTokenDoRequest(authorization);
-      let cadeirasLivres = await CadeiraLivreClient.reservarCadeiraLivre(
+      let cadeiraLivre = await CadeiraLivreClient.reservarCadeiraLivre(
         token,
         cadeiraLivreId
       );
-      return { status: httpStatus.OK, cadeirasLivres };
+      return {
+        status: cadeiraLivre.status,
+        cadeirasLivres: cadeiraLivre.dados
+          ? cadeiraLivre.dados
+          : cadeiraLivre.message,
+      };
     } catch (error) {
       return {
         status: error.status ? error.status : httpStatus.INTERNAL_SERVER_ERROR,
