@@ -9,6 +9,15 @@ const ENDPOINTS_PERMITIDOS = [
   "/api/auth/token",
   "/api/auth/check-token",
   "/api/usuarios/novo",
+  "/swagger-ui/",
+  "/swagger-ui/swagger-ui.css",
+  "/swagger-ui/swagger-ui-bundle.js",
+  "/swagger-ui/swagger-ui-standalone-preset.js",
+  "/swagger-ui/swagger-ui-init.js",
+  "/swagger-ui/swagger-ui-standalone-preset.js",
+  "/swagger-ui/swagger-ui-init.js",
+  "/swagger-ui/favicon-32x32.png",
+  "/swagger-ui/favicon-16x16.png",
 ];
 
 export default async (req, res, next) => {
