@@ -131,6 +131,28 @@
         ],
         "responses": {}
       }
+    },
+    "/api/empresas": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/api/empresas/{empresaId}": {
+      "get": {
+        "tags": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "empresaId",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {}
+      }
     }
   },
   "definitions": {}

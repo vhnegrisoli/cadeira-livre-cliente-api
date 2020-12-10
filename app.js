@@ -9,6 +9,7 @@ import * as rabbitMq from "./src/config/rabbitmq/rabbitMqSender";
 import usuario from "./src/modulos/usuario/routes/usuarioRoutes";
 import autenticacao from "./src/modulos/auth/routes/authRoutes";
 import cadeiraLivre from "./src/modulos/cadeiralivre/routes/cadeiraLivreRoutes";
+import empresa from "./src/modulos/empresa/routes/empresaRoutes";
 import checkToken from "./src/config/auth/checkToken";
 
 const env = process.env;
@@ -28,6 +29,7 @@ app.use("/swagger-ui", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use(autenticacao);
 app.use(usuario);
 app.use(cadeiraLivre);
+app.use(empresa);
 
 app.listen(PORT, () => {
   console.log(
