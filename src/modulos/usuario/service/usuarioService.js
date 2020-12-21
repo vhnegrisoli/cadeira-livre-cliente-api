@@ -96,6 +96,7 @@ class UsuarioService {
         `O CPF ${cpf} está inválido.`
       );
     }
+    return true;
   }
 
   validarPermissaoDoUsuario(id, usuarioAutenticado) {
@@ -105,6 +106,7 @@ class UsuarioService {
         "Você não possui permissão para visualizar este recurso."
       );
     }
+    return true;
   }
 
   async validarCpfJaCadastrado(cpf, id) {
