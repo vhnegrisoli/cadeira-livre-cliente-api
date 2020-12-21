@@ -19,6 +19,7 @@ O projeto é subdividido em módulos, utiliza arquitetura de API REST e microsse
 - **Arquitetura Multicamadas**
 - **Docker**
 - **Docker-compose**
+- **Jest.js**
 
 ### Pré-requisitos
 
@@ -106,6 +107,13 @@ A aplicação estará disponível em:
 ```
 http://localhost:8096
 ```
+
+## Testes automatizados
+
+A aplicação conta com testes unitários e testes de integração utilizando
+a biblioteca Jest.js. Para rodar os testes, basta executar o comando:
+
+`yarn test`
 
 ## Deployment
 

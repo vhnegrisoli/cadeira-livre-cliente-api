@@ -1,5 +1,4 @@
 import UsuarioService from "./usuarioService";
-import UsuarioException from "../exception/usuarioException";
 
 describe("Deve validar UsuarioService", () => {
   test("Retorna CPF válido quando informar CPF válido", () => {
