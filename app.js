@@ -1,7 +1,5 @@
 import express from "express";
 import cors from "cors";
-import swaggerUi from "swagger-ui-express";
-import swaggerFile from "./swagger_output.json";
 import cookieParser from "cookie-parser";
 
 import * as mongodb from "./src/config/mongodb/mongoConfig";
@@ -10,6 +8,7 @@ import usuario from "./src/modulos/usuario/routes/usuarioRoutes";
 import autenticacao from "./src/modulos/auth/routes/authRoutes";
 import cadeiraLivre from "./src/modulos/cadeiralivre/routes/cadeiraLivreRoutes";
 import empresa from "./src/modulos/empresa/routes/empresaRoutes";
+import pagamento from "./src/modulos/pagamento/routes/pagamentoRoutes";
 import checkToken from "./src/config/auth/checkToken";
 
 const env = process.env;
@@ -24,8 +23,7 @@ app.use(checkToken);
 mongodb.connect();
 rabbitMq.inicializarRabbitMQ();
 
-app.use("/swagger-ui", swaggerUi.serve, swaggerUi.setup(swaggerFile));
-
+app.use(pagamento);
 app.use(autenticacao);
 app.use(usuario);
 app.use(cadeiraLivre);
