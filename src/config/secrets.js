@@ -16,3 +16,8 @@ export const CADEIRA_LIVRE_ADMIN_BASE_URI =
   env.NODE_ENV == "development"
     ? "http://localhost:8095"
     : env.CADEIRA_LIVRE_ADMIN_BASE_URI;
+
+export const INTEGRACAO_PAGARME_BASE_URI =
+  env.NODE_ENV == "development"
+    ? "http://localhost:8098"
+    : env.INTEGRACAO_PAGARME_BASE_URI;

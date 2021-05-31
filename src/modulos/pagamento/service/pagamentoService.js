@@ -6,15 +6,15 @@ const AO_MENOS_UM_CARTAO = 1;
 
 class PagamentoService {
   async buscarCartoesDoUsuario(req) {
-    const { usuarioAutenticado } = req;
+    const { authorization } = req.headers;
     try {
       let dadosCartao = await IntegracaoPagarmeClient.buscarCartoesDoUsuario(
-        usuarioAutenticado.id
+        authorization
       );
       this.validarDadosCartaoExistente(dadosCartao);
       return {
-        status: httpStatus.OK,
-        cartao: dadosCartao,
+        status: dadosCartao.status,
+        cartoes: dadosCartao.dados ? dadosCartao.dados : dadosCartao.message,
       };
     } catch (error) {
       return {
@@ -34,23 +34,31 @@ class PagamentoService {
   }
 
   async salvarCartaoDoUsuario(req) {
-    const { numeroCartao, dataValidade, cvv, nomeProprietario } = req.body;
+    const {
+      numeroCartao,
+      dataExpiracaoCartao,
+      cvvCartao,
+      nomeProprietarioCartao,
+    } = req.body;
+    const { authorization } = req.headers;
     try {
       const cartao = {
         numeroCartao,
-        dataValidade,
-        cvv,
-        nomeProprietario,
+        dataExpiracaoCartao,
+        cvvCartao,
+        nomeProprietarioCartao,
       };
       this.validarDadosParaSalvarCartao(cartao);
       const cartaoSalvo = await IntegracaoPagarmeClient.salvarCartaoDoUsuario(
-        cartao
+        cartao,
+        authorization
       );
       return {
-        status: httpStatus.OK,
-        cartao: cartaoSalvo,
+        status: cartaoSalvo.status,
+        cartao: cartaoSalvo.dados ? cartaoSalvo.dados : cartaoSalvo.message,
       };
     } catch (error) {
+      console.log(error);
       return {
         status: error.status ? error.status : httpStatus.INTERNAL_SERVER_ERROR,
         message: error.message,
@@ -62,9 +70,9 @@ class PagamentoService {
     if (
       !cartao ||
       !cartao.numeroCartao ||
-      !cartao.dataValidade ||
-      !cartao.cvv ||
-      !cartao.nomeProprietario
+      !cartao.dataExpiracaoCartao ||
+      !cartao.cvvCartao ||
+      !cartao.nomeProprietarioCartao
     ) {
       throw new PagamentoException(
         httpStatus.BAD_REQUEST,
