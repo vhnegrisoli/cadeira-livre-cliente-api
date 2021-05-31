@@ -7,11 +7,17 @@ class UsuarioService {
   async salvarUsuario(req) {
     try {
       this.validarDadosIncompletos(req);
-      const { nome, cpf, email, senha } = req.body;
+      const { nome, cpf, email, senha, telefone } = req.body;
       await this.validarEmailJaCadastrado(email, null);
       await this.validarCpfValido(cpf);
       await this.validarCpfJaCadastrado(cpf, null);
-      const usuario = await UsuarioRepository.save({ nome, email, cpf, senha });
+      const usuario = await UsuarioRepository.save({
+        nome,
+        email,
+        cpf,
+        senha,
+        telefone,
+      });
       return this.retornarUsuarioSemSenha(usuario);
     } catch (error) {
       return {
@@ -67,8 +73,8 @@ class UsuarioService {
   }
 
   validarDadosIncompletos(req) {
-    const { cpf, nome, email, senha } = req.body;
-    if (!cpf || !nome || !email || !senha) {
+    const { cpf, nome, email, senha, telefone } = req.body;
+    if (!cpf || !nome || !email || !senha || !telefone) {
       throw new UsuarioException(
         httpStatus.BAD_REQUEST,
         "É necessário informar todos os campos."

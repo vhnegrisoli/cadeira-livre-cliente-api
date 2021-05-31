@@ -30,9 +30,9 @@ class AuthService {
   }
 
   gerarTokenJwt(usuario) {
-    const { id, email, nome, cpf } = usuario;
+    const { id, email, nome, cpf, telefone } = usuario;
     const token = jwt.sign(
-      { id, email, nome, cpf },
+      { id, email, nome, cpf, telefone },
       config.APPLICATION_SECRET,
       { expiresIn: "1d" }
     );
@@ -61,12 +61,12 @@ class AuthService {
     const { usuarioAutenticado } = req;
     if (!usuarioAutenticado) {
       return {
-          status: httpStatus.FORBIDDEN,
-          message: "Usuário não autenticado.",
-        };
-      }
-      return { status: httpStatus.OK, usuarioAutenticado };
+        status: httpStatus.FORBIDDEN,
+        message: "Usuário não autenticado.",
+      };
     }
+    return { status: httpStatus.OK, usuarioAutenticado };
+  }
 
   async verificarTokenValido(req) {
     const { token } = req.query;

@@ -50,7 +50,7 @@ export default async (req, res, next) => {
       token,
       config.APPLICATION_SECRET
     );
-    const { id, nome, email, cpf } = dadosToken;
+    const { id, nome, email, cpf, telefone } = dadosToken;
     req.usuarioAutenticado = { id, nome, email, cpf };
   }
 };
