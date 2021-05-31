@@ -81,12 +81,14 @@ class CadeiraLivreService {
   async reservarCadeiraLivre(req) {
     try {
       const { authorization } = req.headers;
-      const { cadeiraLivreId } = req.params;
+      const { cadeiraLivreId, cartaoId } = req.body;
       this.validarCadeiraLivreIdExistente(cadeiraLivreId);
+      this.validarCartaoIdExistente(cartaoId);
       let token = this.tratarTokenDoRequest(authorization);
       let cadeiraLivre = await CadeiraLivreClient.reservarCadeiraLivre(
         token,
-        cadeiraLivreId
+        cadeiraLivreId,
+        cartaoId
       );
       return {
         status: cadeiraLivre.status,
@@ -107,6 +109,15 @@ class CadeiraLivreService {
       throw new CadeiraLivreException(
         httpStatus.BAD_REQUEST,
         "É obrigatório informar o ID da Cadeira Livre."
+      );
+    }
+  }
+
+  validarCartaoIdExistente(cartaoId) {
+    if (!cartaoId) {
+      throw new CadeiraLivreException(
+        httpStatus.BAD_REQUEST,
+        "É obrigatório informar o ID do cartão."
       );
     }
   }

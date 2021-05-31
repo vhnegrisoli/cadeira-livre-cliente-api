@@ -81,7 +81,7 @@ class CadeiraLivreClient {
     return dados;
   }
 
-  async reservarCadeiraLivre(token, cadeiraLivreId) {
+  async reservarCadeiraLivre(token, cadeiraLivreId, cartaoId) {
     let endpoint = this.tratarParametrosDoEndpoint(
       token,
       null,
@@ -90,7 +90,7 @@ class CadeiraLivreClient {
     );
     let dados = null;
     await axios
-      .post(endpoint)
+      .post(`${endpoint}&cartaoId=${cartaoId}`)
       .then((res) => {
         dados = { status: httpStatus.OK, dados: res.data };
       })

@@ -17,7 +17,7 @@ router.get(
   CadeiraLivreController.buscarCadeiraLivrePorId
 );
 router.post(
-  "/api/cadeiras-livres/:cadeiraLivreId/reservar",
+  "/api/cadeiras-livres/reservar",
   CadeiraLivreController.reservarCadeiraLivre
 );
 
