@@ -65,13 +65,13 @@ class EmpresaClient {
   }
 
   tratarParametrosDeFiltro(parametros) {
-    const { empresaId, cnpj, nome, tipoEmpresa } = parametros;
+    const { empresaId, cpfCnpj, nome, tipoEmpresa } = parametros;
     let parametrosEndpoint = "";
     if (empresaId) {
       parametrosEndpoint = parametrosEndpoint.concat(`&id=${empresaId}`);
     }
-    if (cnpj) {
-      parametrosEndpoint = parametrosEndpoint.concat(`&cnpj=${cnpj}`);
+    if (cpfCnpj) {
+      parametrosEndpoint = parametrosEndpoint.concat(`&cpfCnpj=${cpfCnpj}`);
     }
     if (nome) {
       parametrosEndpoint = parametrosEndpoint.concat(`&nome=${nome}`);
