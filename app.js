@@ -10,6 +10,8 @@ import cadeiraLivre from "./src/modulos/cadeiralivre/routes/cadeiraLivreRoutes";
 import empresa from "./src/modulos/empresa/routes/empresaRoutes";
 import pagamento from "./src/modulos/pagamento/routes/pagamentoRoutes";
 import checkToken from "./src/config/auth/checkToken";
+import swaggerUi from "swagger-ui-express";
+import openApiDocumentation from "./openApiDocumentation.js";
 
 const env = process.env;
 const app = express();
@@ -18,6 +20,16 @@ const PORT = env.PORT || 8096;
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
+app.use(
+  "/swagger-ui.html",
+  swaggerUi.serve,
+  swaggerUi.setup(openApiDocumentation)
+);
+
+app.get("/", (req, res) => {
+  return res.redirect("/swagger-ui.html");
+});
+
 app.use(checkToken);
 
 mongodb.connect();
