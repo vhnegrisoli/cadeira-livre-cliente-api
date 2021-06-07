@@ -10,12 +10,11 @@ module.exports = {
   },
   servers: [
     {
-      url: "http://localhost:8096/",
-      description: "API local",
-    },
-    {
-      url: "https://cadeira-livre-cliente-api.herokuapp.com/",
-      description: "API produção",
+      url:
+        process.env.NODE_ENV === "development"
+          ? "http://localhost:8096/"
+          : "https://cadeira-livre-cliente-api.herokuapp.com/",
+      description: "URL da API",
     },
   ],
   security: [
